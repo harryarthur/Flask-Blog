@@ -1,2 +1,2 @@
 # Flask-Blog
-My attempt at beginner flask web app development.  
+My attempt at beginner flask web app development. Currently still in development.  
