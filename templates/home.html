@@ -2,10 +2,16 @@
 {%block content%}
  <!--the templating engine that flask uses is called jinga2 and it allows us to write code here
 within our templates. We open up a code block by using the percntage sign inside curly brackets-->
-   {% for post in posts %}
-        <h1>{{post.title}}</h1><!--this is not a code block, we're printing out variables using the
-        dot accessor-->
-        <p>By {{post.author}} on {{post.date_posted}}</p>
-        <p>{{post.content}}</p>
-   {% endfor %}<!--Tell the templating engine to end the for loop-->
-{%endblock content%}
+{% for post in posts %}
+<article class="media content-section">
+  <div class="media-body">
+    <div class="article-metadata">
+      <a class="mr-2" href="#">{{ post.author }}</a>
+      <small class="text-muted">{{ post.date_posted }}</small>
+    </div>
+    <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
+    <p class="article-content">{{ post.content }}</p>
+  </div>
+</article>
+{% endfor %}
+{% endblock content %}
