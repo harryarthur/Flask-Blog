@@ -1,0 +1,48 @@
+{%extends "layout.html"%}
+{%block content%}
+ <!--the templating engine that flask uses is called jinga2 and it allows us to write code here
+within our templates. We open up a code block by using the percntage sign inside curly brackets-->
+
+   <div class='content-section'>
+       <form method="POST" action="">
+           <!--the empty action field indicates that its posted to the same route-->
+           <!--Remeber to wrap variables in double curly braces. Here we are 
+            accessing the form instance that we passed into the template-->
+           {{form.hidden_tag()}}
+           <fieldset class='form-group'>
+               <legend class='border-bottom mb-4'>Join Today</legend>
+               <div class = "form-group">
+            <!--this is to print out the label of the field-->
+                    {{form.username.label(class="form-control-label")}}c
+            <!--this is to print out the field itself-->
+                    {{form.username(class="form-control form-control-lg")}}
+            <!--the class attributes are just more bootstrap stuff to make it look nicer-->
+               </div>
+
+               <div class = "form-group">
+                    {{form.email.label(class="form-control-label")}}
+                    {{form.email(class="form-control form-control-lg")}}
+               </div>
+
+               <div class = "form-group">
+                    {{form.password.label(class="form-control-label")}}
+                    {{form.password(class="form-control form-control-lg")}}
+               </div>
+
+               <div class = "form-group">
+                    {{form.confirm_password.label(class="form-control-label")}}
+                    {{form.confirm_password(class="form-control form-control-lg")}}
+               </div>
+
+               <div class = "form-group">
+                    {{form.submit(class="btn btn-outline-info")}}
+               </div>
+
+           </fieldset>
+       </form>   
+   </div>
+   <div>
+       
+   </div>
+
+{%endblock content%}
