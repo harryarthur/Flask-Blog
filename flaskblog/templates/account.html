@@ -2,7 +2,64 @@
 {%block content%}
  <!--the templating engine that flask uses is called jinga2 and it allows us to write code here
 within our templates. We open up a code block by using the percntage sign inside curly brackets-->
+<div class="content-section">
+   <div class="media">
+     <img class="rounded-circle account-img" src="{{image_file}}">
+     <div class="media-body">
+       <h2 class="account-heading">{{current_user.username}}</h2>
+       <p class="text-secondary">{{current_user.email}}</p>
+     </div>
+   </div>
+      <form method="POST" action="" enctype ="multipart/form-data">
+         <!--the empty action field indicates that its posted to the same route-->
+         <!--Remeber to wrap variables in double curly braces. Here we are 
+          accessing the form instance that we passed into the template-->
+          {{ form.hidden_tag() }}
+          <fieldset class="form-group">
+              <legend class="border-bottom mb-4">Account Info</legend>
+              <div class="form-group">
+          <!--this is to print out the label of the field-->
+                  {{ form.username.label(class="form-control-label") }}
 
-   <h1>{{current_user.username}}</h1>
-
+                  {% if form.username.errors %}
+                      {{ form.username(class="form-control form-control-lg is-invalid") }}
+                      <div class="invalid-feedback">
+                          {% for error in form.username.errors %}
+                              <span>{{ error }}</span>
+                          {% endfor %}
+                      </div>
+                  {% else %}
+          <!--this is to print out the field itself-->
+                      {{ form.username(class="form-control form-control-lg") }}
+          <!--the class attributes are just more bootstrap stuff to make it look nicer-->
+                  {% endif %}
+              </div>
+              <div class="form-group">
+                  {{ form.email.label(class="form-control-label") }}
+                  {% if form.email.errors %}
+                      {{ form.email(class="form-control form-control-lg is-invalid") }}
+                      <div class="invalid-feedback">
+                          {% for error in form.email.errors %}
+                              <span>{{ error }}</span>
+                          {% endfor %}
+                      </div>
+                  {% else %}
+                      {{ form.email(class="form-control form-control-lg") }}
+                  {% endif %}
+              </div>
+               <div class="form-group">
+                  {{ form.picture.label() }}
+                  {{form.picture(class="form-control-file")}}
+                  {% if form.picture.errors %}
+                     {% for error in form.picture.errors %}
+                        <span class="text-danger">{{ error }}</span></br>
+                     {% endfor %}
+                  {% endif %}
+              </div>
+          </fieldset>
+          <div class="form-group">
+              {{ form.submit(class="btn btn-outline-info") }}
+          </div>
+      </form>
+ </div>
 {%endblock content%}
